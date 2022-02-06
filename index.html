@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+
+/* change project image size */
+@keyframes changewidth {
+  from {
+    width: 50%;
+  }
+
+  to {
+    width: 60%;
+  }
+}
+
+.project-img {
+  width: 50%;
+  padding: 10px;
+  -webkit-filter: drop-shadow(0px 0px 10px #ffffff);
+  filter: drop-shadow(0px 0px 10px #ffffff);
+}
+
+.project-img:hover {
+  animation-duration: .7s;
+  animation-name: changewidth;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  -webkit-filter: drop-shadow(0px 0px 50px #0ff);
+  filter: drop-shadow(0px 0px 50px #0ff);
+}
+
+body {
+  background: url("images/AISX_desktop_BG.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+
+
+/* Hide scrollbar for IE, Edge and Firefox, prevent page jumping on scrollbar appearance during grow animation */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+
+}
+/* Hide scrollbar for Chrome, Safari and Opera */
+body::-webkit-scrollbar {
+display: none;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+  justify-items: center;
+  width: 90vw;
+}
+
+.center {
+  box-sizing: content-box;
+  max-width: var(--max-width);
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+* {
+	font-family: Futura,sans-serif;
+	font-weight: 100;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: white;
+
+}
+
+.header {
+  background: black;
+  color: white;
+	display: flex;
+	/* justify-content:space-evenly; */
+	justify-content: right;
+	flex-wrap: wrap;
+	padding: 1vh;
+	margin: -10px;
+	/* margin-left: -10px;
+	margin-right: -10px; */
+}
+
+/* Style socials */
+.social {
+	padding: 10px;
+/* font-size: 2rem; */
+  font-size: 15px;
+  width: 30px;
+	height: 18px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 50%;
+	background: grey;
+	color: black;
+}
+
+/* shrinks an img down into a container */
+.shrunk-img {
+	min-width: 0;
+	max-width: 61%;
+	height: auto;
+}
+
+.half-shrunk-img {
+	min-width: 0;
+	max-width: 30%;
+	height: auto;
+}
+
+.ai-button {
+  font-size: 13px;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+  padding: 13px 20px 13px;
+  outline: 0;
+  border: 0px solid black;
+  cursor: pointer;
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin: 5px;
+	background-color: rgba(39, 180, 137, 1);
+}
+
+.ai-button:hover {
+  background-color: rgba(39, 180, 137, .8);
+}
+
+.grid {
+  display: grid;
+  grid-gap: 5vh;
+}
+
+@supports (width: min(250px, 100%)) {
+  .grid, .container {
+		/* move to two columns on mobile instead of 1 (100% -> 50%) */
+    /* grid-template-columns: repeat(auto-fit, minmax(min(250px, 50%), 1fr)); */
+		grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+
+  }
+}
+
+/* move to two columns but one if tiny on mobile instead of 1 (100% -> 50%) */
+@media screen and (max-width: 370px) {
+	/* move to single row with small screens */
+	/* .grid, .container {
+    grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+  } */
+}
+
+.popup {
+  padding: 10px;
+  margin: 10px;
+	/* position popups to side of icon */
+	margin-top: -15%;
+	margin-right: -15vw;
+  background-color: rgba(0, 0, 0, .6);
+  visibility: hidden;
+  max-width: 400px;
+  position: absolute;
+  z-index: 1;
+}
+
+.project-img:hover+.popup {
+  visibility: visible;
+}
+
+.popup:hover {
+  visibility: visible;
+}
+
+@media screen and (max-width: 800px) {
+  .popup {
+    visibility: visible;
+    position: relative;
+		margin: 10px;
+  }
+	/* used for offset cols in mobile view */
+	.top-margin {
+		/* margin-top:25vh; */
+	}
+}
+
+
+
+</style>
+<title>Art Island ATX</title>
+<script src="https://unpkg.com/vue"></script>
+<!-- Add icon library -->
+ <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+ <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/v4-shims.css">
+
+<body>
+	<div id="app" class="">
+		<div class="header" >
+			<!-- <a href="https://www.artislandatx.com">
+				<img style="height:7vh;" src="images/artisland_logo_horizontal-white.webp">
+			</a> -->
+			<div style="">
+			 <a href="https://www.artislandatx.com"><img src="icons/ic_ai_logo.png" style="width:30px;"></a>
+
+
+				<a href="https://www.instagram.com/artislandatx/" ><img src="icons/ic_ai_ig.png" style="width:30px;"></a>
+
+
+				<!-- Add font awesome icons -->
+				<!-- <a href="https://www.instagram.com/artislandatx/" class="fa fa-instagram social fa-fw"></a>
+				<a href="https://tiktok.com/@artislandATX" class="fab fa-tiktok social fa-fw"></a>
+				<a href="https://soundcloud.com/artislandatxmusic" class="fa fa-soundcloud social fa-fw"></a>
+				<a href="https://www.facebook.com/ArtIslandAustinTexas" class="fa fa-facebook social fa-fw"></a>
+				<a href="https://www.youtube.com/channel/UCXy4kxF79NbVncV4oh7vK-A" class="fa fa-youtube social fa-fw"></a> -->
+
+			</div>
+		</div>
+		<div class="center" style="padding:1vw">
+			<div class="" v-if="projectView" style="background: rgba(60, 60, 60, 0.4); padding:7vw; padding-top:1vw;">
+				<div class="grid">
+					<!-- <div>
+						<img :src="'icons/'+selectedProject.image+'@2x.png'" style="width:70%" class="shrunk-img">
+					</div> -->
+					<div class="stack" style="padding:1vw">
+						<!-- style: let image shrink below its max size on mobile view -->
+						<img :src="'icons/'+selectedProject.image+'.png'" style="	" class="shrunk-img">
+						<br>
+						<div style="max-width: 100ch;">
+							<h1>{{selectedProject.name}}</h1>
+							<h2>{{selectedProject.description}}</h2>
+							<div class="stack" style="display:flex; justify-content:space-between;">
+								<button class="ai-button" @click="projectView = false">Return</button>
+								<button class="ai-button" @click="openProjectPage(selectedProject.pageurl)">Read More</button>
+							</div>
+						</div>
+					</div>
+					<div>
+						<img :src="'images/'+selectedProject.image+'1.jpg'" class="shrunk-img">
+						<div class="">
+							<img :src="'images/'+selectedProject.image+'2.jpg'" class="half-shrunk-img">
+							<img :src="'images/'+selectedProject.image+'3.jpg'" class="half-shrunk-img">
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div v-else class="center">
+				<img style="max-height: 15vh" src="images/AIplayground.png">
+				<div class="container" v-for="projectSet in allProjects">
+					<div @click="showProject(project)" v-for="project in projectSet" class="center stack project" style="justify-content: center;">
+						<!-- the reactive class used for offset mobile view, could be removed -->
+						<img :class="project.class" class="project-img" :src="'icons/'+project.image+'@2x.png'">
+						<div class="popup">
+							<h2 style="">{{project.name}}</h2>
+							<h5 style="">{{project.oneliner}}</h5>
+							<button class="ai-button">Learn More</button>
+							<!-- <h5 style="font-style: italic; color:rgba(39, 180, 137, 1);">Click to learn more</h5> -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+	  var app = new Vue({
+	    el: '#app',
+	    data: {
+				projectView: false,
+				selectedProject: {},
+				allProjects: {
+					projects1: [
+						{name: "Ascension Photobooth", image: "mirror", pageurl: "https://www.artislandatx.com/ascensionphotobooth",
+							oneliner: "We co-create with our favorite artists to fuse otherworldly design with sharable content and lasting memories.",
+							description: "An ascending photobooth experience resulting in beautiful photos. Branding from the event took shape as a light to expand into with a guided meditation and soundscape. The takeaway was a gratitude mindset, digital portraits, and printed takeaway gifts."},
+
+						{name: "Totem", class:"top-margin", image: "twerk", pageurl: "https://www.artislandatx.com/totem",
+							oneliner: "Building software that mesh tech and art in hypnotically interactive formats.",
+							description: "An amazing CNC'd LED totem, which houses the hardware to visualize movement through a digital projection."},
+					],
+					projects2: [
+						{name: "Literati Learning Tree of Light", image: "tree", pageurl: "https://www.artislandatx.com/learningtree",
+							oneliner: "We build art installations and structures to delight and invite engagement.",
+							description: "A commission for an Austin business looking for an iconic installation to travel with, from design to execution to delivery."},
+						{name: "Enter the Ember", class:"top-margin", image: "entry", pageurl: "https://www.artislandatx.com/basic-01",
+							oneliner: "We can adapt our artful offerings to any scale and inspiration point.",
+							description: "Given the themes of the event: witches, fairies, and dragons, we created installations inviting the whimsy for 400+ attendees."},
+						{name: "afterglow glam-up lounge", image: "glowup", pageurl: "https://www.artislandatx.com/afterglowbooth",
+							oneliner: "Creating environments & invitations for brands to leave a lasting impression.",
+							description: "We were commissioned by the Austin-based brand afterglow to create a sexy lounge and 'glam up' bar where we would reward attendees for interacting with the product with free face jewel service."},
+					],
+
+				}
+
+
+	    },
+	    methods: {
+	      showProject: function (project) {
+	        this.projectView = true;
+					this.selectedProject = project;
+	      },
+				openProjectPage: function (pageurl) {
+					window.open(pageurl);
+				}
+	    }
+	  })
+	</script>
+
+
+	</body>
+	</html>
