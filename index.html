@@ -32,7 +32,8 @@
 }
 
 body {
-  background: url("images/cybirds.png") no-repeat center center fixed;
+  background: url("images/flask.png") no-repeat center center fixed;
+  /* filter: hue-rotate(260deg); */
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -81,11 +82,15 @@ display: none;
 h1 {
   font-size:90px;
   font-family: title;
+  font-weight:900;
+
+  /* -webkit-text-stroke: 1px black; */
 
 }
 
 h1, h2, h3, h4, h5, h6 {
   color: white;
+  /* background-color:black; */
 }
 
 .header {
@@ -212,32 +217,6 @@ h1, h2, h3, h4, h5, h6 {
  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/v4-shims.css">
  <script src="https://w.soundcloud.com/player/api.js" type="text/javascript"></script>
-
- <!-- <iframe id="sc-widget" src="https://w.soundcloud.com/player/?url=https://api.soundcloud.com/users/thewildoups/favorites" width="100%" height="465" scrolling="no" frameborder="no"></iframe> -->
- <script src="https://w.soundcloud.com/player/api.js" type="text/javascript"></script>
- <script type="text/javascript">
-   (function(){
-     var widgetIframe = document.getElementById('sc-widget'),
-         widget       = SC.Widget(widgetIframe);
-
-     widget.bind(SC.Widget.Events.READY, function() {
-       widget.bind(SC.Widget.Events.PLAY, function() {
-         // get information about currently playing sound
-         widget.getCurrentSound(function(currentSound) {
-           console.log('sound ' + currentSound.get('') + 'began to play');
-         });
-       });
-       // get current level of volume
-       widget.getVolume(function(volume) {
-         console.log('current volume value is ' + volume);
-       });
-       // set new volume level
-       widget.setVolume(50);
-       // get the value of the current position
-     });
-
-   }());
- </script>
 
 <body>
 	<div id="app" class="">
